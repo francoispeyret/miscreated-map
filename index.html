@@ -10,10 +10,13 @@
 				margin: 0;
 				box-sizing: border-box;
 			}
+
 			html {
 				background: #333;
 				font-family: Sans-serif;
+				overflow: hidden;
 			}
+
 			#header {
 				position: fixed;
 				z-index: 5;
@@ -25,26 +28,47 @@
 				padding: 10px;
 				height: 50px;
 			}
+
 			#header h1 {
 				text-transform: uppercase;
 				font-weight: 400;
 			}
+
 			#map {
 				height: 100vh;
 				width: 100%;
 				overflow: hidden;
 			}
+
 			#map img {
-				box-shadow: 0 0 80px rgba(0,0,0,0.5);
+				box-shadow: 0 0 80px rgba(0, 0, 0, 0.5);
+				width: 1500px;
+				height: 1500px;
+				position: absolute;
 			}
 		</style>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120292884-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+
+			gtag('js', new Date());
+
+			gtag('config', 'UA-120292884-1');
+		</script>
 	</head>
 	<body>
 		<section id="header">
 			<h1>Miscreated Interactive Map 2018</h1>
 		</section>
 		<section id="map">
-			<img src="assets/textures/map-texture.jpg" />
+			<div id="map-decallage">
+				<img src="assets/textures/map-texture.jpg"/>
+			</div>
 		</section>
 		<script type="text/javascript" src="assets/js/jquery.js"></script>
 		<script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
