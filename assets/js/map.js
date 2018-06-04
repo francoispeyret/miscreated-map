@@ -9,24 +9,24 @@ $(document).on('ready', function () {
 
 	// fonction du zoom
 	$('#map').bind('mousewheel', function (e) {
-		var x = e.pageX;
-		var y = e.pageY;
 
-		x = mappingValue(x,0,$(window).width(),decalageZoom/2,-decalageZoom/2);
-		y = mappingValue(y,0,$(window).height(),decalageZoom/2,-decalageZoom/2);
+		var x = mappingValue(e.pageX,0,$(document).width(),decalageZoom/2,-decalageZoom/2);
+		var y = mappingValue(e.pageY,0,$(document).height(),decalageZoom/2,-decalageZoom/2);
+
+		console.log(x);
 
 
 		// zoomIn
 		if (e.originalEvent.wheelDelta / 120 > 0) {
 			mapZoom(true);
-			mapDecalage.css('margin-left', parseInt(mapDecalage.css('margin-left')) - decalageZoom/2 + x);
-			mapDecalage.css('margin-top', parseInt(mapDecalage.css('margin-top')) - decalageZoom/2 + y);
+			mapDecalage.css('margin-left', parseInt(mapDecalage.css('margin-left')) + x);
+			mapDecalage.css('margin-top', parseInt(mapDecalage.css('margin-top')) + y);
 		}
 		// zoomOut
 		else {
 			mapZoom(false);
-			mapDecalage.css('margin-left', parseInt(mapDecalage.css('margin-left')) + decalageZoom/2 + x);
-			mapDecalage.css('margin-top', parseInt(mapDecalage.css('margin-top')) + decalageZoom/2 + y);
+			mapDecalage.css('margin-left', parseInt(mapDecalage.css('margin-left')) + x);
+			mapDecalage.css('margin-top', parseInt(mapDecalage.css('margin-top')) + y);
 		}
 	});
 
@@ -47,10 +47,14 @@ $(document).on('ready', function () {
 			return newval;
 		}
 		if (start2 < stop2) {
-			return this.constrain(newval, start2, stop2);
+			return constrain(newval, start2, stop2);
 		} else {
-			return this.constrain(newval, stop2, start2);
+			return constrain(newval, stop2, start2);
 		}
+	}
+
+	function constrain (n, low, high) {
+		return Math.max(Math.min(n, high), low);
 	}
 
 });
