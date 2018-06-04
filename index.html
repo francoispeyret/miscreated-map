@@ -1,8 +1,53 @@
+<!doctype html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<title>Miscreated Map</title>
+		<link href="assets/css/jquery-ui.min.css" rel="stylesheet">
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			html {
+				background: #333;
+				font-family: Sans-serif;
+			}
+			#header {
+				position: fixed;
+				z-index: 5;
+				top: 0;
+				right: 0;
+				left: 0;
+				background: #222;
+				color: #eee;
+				padding: 10px;
+				height: 50px;
+			}
+			#header h1 {
+				text-transform: uppercase;
+				font-weight: 400;
+			}
+			#map {
+				height: 100vh;
+				width: 100%;
+				overflow: hidden;
+			}
+			#map img {
+				box-shadow: 0 0 80px rgba(0,0,0,0.5);
+			}
+		</style>
 	</head>
 	<body>
-		<img src="map-texture.jpg" />
+		<section id="header">
+			<h1>Miscreated Interactive Map 2018</h1>
+		</section>
+		<section id="map">
+			<img src="assets/textures/map-texture.jpg" />
+		</section>
+		<script type="text/javascript" src="assets/js/jquery.js"></script>
+		<script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="assets/js/map.js"></script>
 	</body>
 </html>
