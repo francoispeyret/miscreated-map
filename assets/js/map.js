@@ -1,60 +1,37 @@
 
+var mapScale = 1;
+var client = {};
+	client.x = 0;
+	client.y = 0;
+var x = 0;
+var y = 0;
+function setup() {
+   	createCanvas(window.innerWidth, window.innerHeight);
+    mapper = loadImage("assets/textures/map-texture.jpg");
+}
 
-$(document).on('ready', function () {
+function draw() {
+    background(30);
+	translate(width/2+client.x,height/2+client.y);
+	scale(mapScale);
+    image(mapper, -mapper.width/2, -mapper.height/2);
+}
 
-	$("#map img").draggable();
-	var map = $("#map img");
-	var mapDecalage = $("#map #map-decallage");
-	var decalageZoom = 150;
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
 
-	// fonction du zoom
-	$('#map').bind('mousewheel', function (e) {
-
-		var x = mappingValue(e.pageX,0,$(document).width(),decalageZoom/2,-decalageZoom/2);
-		var y = mappingValue(e.pageY,0,$(document).height(),decalageZoom/2,-decalageZoom/2);
-
-		console.log(x);
-
-
-		// zoomIn
-		if (e.originalEvent.wheelDelta / 120 > 0) {
-			mapZoom(true);
-			mapDecalage.css('margin-left', parseInt(mapDecalage.css('margin-left')) + x);
-			mapDecalage.css('margin-top', parseInt(mapDecalage.css('margin-top')) + y);
-		}
-		// zoomOut
-		else {
-			mapZoom(false);
-			mapDecalage.css('margin-left', parseInt(mapDecalage.css('margin-left')) + x);
-			mapDecalage.css('margin-top', parseInt(mapDecalage.css('margin-top')) + y);
-		}
-	});
-
-	function mapZoom(direction) {
-		if(direction == true) {
-			map.width(map.width()+decalageZoom);
-			map.height(map.height()+decalageZoom);
-		}
-		if(direction == false) {
-			map.width(map.width()-decalageZoom);
-			map.height(map.height()-decalageZoom);
-		}
+function mouseWheel(event) {
+    if(event.delta < 0 && mapScale < 3) {
+        mapScale *= 1.05;
 	}
-
-	function mappingValue(n, start1, stop1, start2, stop2, withinBounds) {
-		var newval = (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
-		if (!withinBounds) {
-			return newval;
-		}
-		if (start2 < stop2) {
-			return constrain(newval, start2, stop2);
-		} else {
-			return constrain(newval, stop2, start2);
-		}
+    else if(mapScale > 0.1) {
+        mapScale *= 0.95;
 	}
+}
 
-	function constrain (n, low, high) {
-		return Math.max(Math.min(n, high), low);
-	}
-
-});
+function mouseDragged(e) {
+	print(e);
+    client.x += e.clientX;
+    client.y += e.clientY;
+}

@@ -1,6 +1,6 @@
 # Miscreated Map System
 
-**v0.0.1**
+**v0.0.2b**
 
 By François Peyret (Meeshoot)
 
