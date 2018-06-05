@@ -10,7 +10,7 @@ function setup() {
    	createCanvas(window.innerWidth, window.innerHeight);
     mapper = loadImage("assets/textures/map-texture.jpg");
 
-    client.pos = createVector(0,0);
+    client.pos = createVector(width/2,height/2);
 }
 
 function draw() {
