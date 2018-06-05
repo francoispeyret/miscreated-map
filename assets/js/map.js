@@ -1,16 +1,17 @@
 
 var mapScale = 1;
+var mapper = [];
 var client = {};
-var x = 0;
-var y = 0;
 
 var isDragging = false;
 
 function setup() {
    	createCanvas(window.innerWidth, window.innerHeight);
-    mapper = loadImage("assets/textures/map-texture.jpg");
+   	for(tiles=0; tiles < 16; tiles++) {
+   		mapper[tiles] = loadImage("assets/textures/map-texture_"+tiles+".jpg");
+	}
 
-    client.pos = createVector(width/2,height/2);
+    client.pos = createVector(0,0);
 }
 
 function draw() {
@@ -18,7 +19,18 @@ function draw() {
 	translate(width/2,height/2);
 	scale(mapScale);
 
-    image(mapper, client.pos.x, client.pos.y, -mapper.width/2, -mapper.height/2);
+    //image(mapper, client.pos.x, client.pos.y, -mapper.width/2, -mapper.height/2);
+	var y = -1;
+    for(tiles=0; tiles < 16; tiles++) {
+    	if(tiles%4==0)
+    		y++;
+        image(mapper[tiles],
+				client.pos.x + (512 * (tiles%4)),
+				client.pos.y+ (512 * y),
+				mapper[tiles].width/2,
+				mapper[tiles].height/2
+		);
+    }
 }
 
 function windowResized() {
@@ -44,7 +56,6 @@ function mouseDragged(e) {
 	if(isDragging) {
 		let m = createVector(mouseX, mouseY);
 		client.pos.set(m).add(clickOffset);
-		console.log(client.pos);
 	}
 }
 
