@@ -15,9 +15,10 @@ function setup() {
 
 function draw() {
     background(30);
-	translate(width/2+client.pos.x,height/2+client.pos.y);
+	translate(width/2,height/2);
 	scale(mapScale);
-    image(mapper, -mapper.width/2, -mapper.height/2);
+
+    image(mapper, client.pos.x, client.pos.y, -mapper.width/2, -mapper.height/2);
 }
 
 function windowResized() {
@@ -43,7 +44,7 @@ function mouseDragged(e) {
 	if(isDragging) {
 		let m = createVector(mouseX, mouseY);
 		client.pos.set(m).add(clickOffset);
-		console.log(client.position);
+		console.log(client.pos);
 	}
 }
 
