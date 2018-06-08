@@ -2,6 +2,7 @@
 var mapScale = 1;
 var mapper = [];
 var client = {};
+var gps = true;
 
 var isDragging = false;
 
@@ -17,9 +18,8 @@ function setup() {
 function draw() {
     background(30);
 	translate(width/2,height/2);
+	push();
 	scale(mapScale);
-
-    //image(mapper, client.pos.x, client.pos.y, -mapper.width/2, -mapper.height/2);
 	var y = -1;
     for(tiles=0; tiles < 16; tiles++) {
     	if(tiles%4==0)
@@ -31,6 +31,18 @@ function draw() {
 				mapper[tiles].height/2
 		);
     }
+	pop();
+    if(gps==true) {
+    	strokeWeight(1);
+        stroke(0,255,255);
+        //noFill();
+        //rect(-15,-15,30,30);
+        fill(0,255,255);
+        text(client.pos.x,-width/2+10,height/2-40);
+        text(client.pos.y,-width/2+10,height/2-28);
+        line(0,-height/2,0,height/2);
+        line(-width/2,0,width/2,0);
+	}
 }
 
 function windowResized() {
@@ -62,3 +74,16 @@ function mouseDragged(e) {
 function mouseReleased() {
 	isDragging = false;
 }
+
+$(document).on('ready',function(){
+	$('.zoom .minus').on('click',function(){
+		mapScale *= 0.9;
+	});
+	$('.zoom .plus').on('click',function(){
+		mapScale *= 1.1;
+	});
+	$('.gps').on('click',function(){
+		if(gps) gps = false;
+		else gps = true;
+	});
+});
