@@ -3,6 +3,8 @@ var mapScale = 1;
 var mapper = [];
 var client = {};
 var gps = true;
+var markers = [];
+var makerImgWhite;
 
 var isDragging = false;
 
@@ -11,8 +13,11 @@ function setup() {
    	for(tiles=0; tiles < 16; tiles++) {
    		mapper[tiles] = loadImage("assets/textures/map-texture_"+tiles+".jpg");
 	}
+	makerImgWhite = loadImage("assets/textures/marker-white.png");
 
     client.pos = createVector(0,0);
+
+   	markers[0] = new Marker(100,100,'blue');
 }
 
 function draw() {
@@ -31,7 +36,10 @@ function draw() {
 				mapper[tiles].height/2
 		);
     }
-	pop();
+    for(mark=0; mark < markers.length; mark++) {
+    	markers[mark].display();
+	}
+    pop();
     if(gps==true) {
     	strokeWeight(1);
         stroke(0,255,255);
