@@ -1,0 +1,18 @@
+<?xml version='1.0' ?>
+<groups>
+    <group>
+        <name>Test1</name>
+        <description>A group with name, color and description.</description>
+        <color>#0ee</color>
+    </group>
+    <group>
+        <name>Test2</name>
+        <description>A group with name, color and description.</description>
+        <color>#F00</color>
+    </group>
+    <group>
+        <name>Test3</name>
+        <description>A group with name, color and description.</description>
+        <color>#0e0</color>
+    </group>
+</groups>

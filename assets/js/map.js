@@ -4,7 +4,7 @@ var mapper = [];
 var client = {};
 var gps = true;
 var markers = [];
-var makerImgWhite;
+var groups = [];
 
 var isDragging = false;
 
@@ -13,11 +13,8 @@ function setup() {
    	for(tiles=0; tiles < 16; tiles++) {
    		mapper[tiles] = loadImage("assets/textures/map-texture_"+tiles+".jpg");
 	}
-	makerImgWhite = loadImage("assets/textures/marker-white.png");
 
     client.pos = createVector(0,0);
-
-   	markers[0] = new Marker(100,100,'blue');
 }
 
 function draw() {
@@ -84,6 +81,44 @@ function mouseReleased() {
 }
 
 $(document).on('ready',function(){
+
+    $.ajax({
+        url: './data/markers.xml',
+        dataType: 'xml',
+        success: function(data){
+            // Extract relevant data from XML
+            var xml_node = $('markers marker',data);
+            xml_node.each(function(node){
+                markers[node] = new Marker(parseInt($('markers marker x',data).eq(node).text()),parseInt($('markers marker y',data).eq(node).text()));
+			});
+        },
+        error: function(data,a,b){
+            alert('Error : loading markers.xml failed');
+        }
+    });
+    $.ajax({
+        url: './data/groups.xml',
+        dataType: 'xml',
+        success: function(data){
+            // Extract relevant data from XML
+            var xml_node = $('groups group',data);
+            xml_node.each(function(node){
+            	var name = $('groups group name',data).eq(node).text();
+            	var description = $('groups group description',data).eq(node).text();
+            	var color = $('groups group color',data).eq(node).text();
+            	$('#groups .content').append('<div class="group"><span class="name" style="background-color: '+color+';">'+name+'</span> <span class="description">'+description+'</span></div>')
+                //markers[node] = new Marker(parseInt($('markers marker x',data).eq(node).text()),parseInt($('markers marker y',data).eq(node).text()));
+			});
+        },
+        error: function(data,a,b){
+            alert('Error : loading groups.xml failed');
+        }
+    });
+
+    $('#groups .toggle').on('click',function(){
+    	$(this).parent().toggleClass('active').find('.content').stop(true).toggle();
+	})
+
 	$('.zoom .minus').on('click',function(){
 		mapScale *= 0.9;
 	});
