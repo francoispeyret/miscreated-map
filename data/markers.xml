@@ -1,12 +1,12 @@
 <?xml version='1.0' ?>
 <markers>
     <marker>
-        <group>test1-1</group>
+        <group>Test1</group>
         <x>320</x>
         <y>20</y>
     </marker>
     <marker>
-        <group>test1-2</group>
+        <group>Test2</group>
         <x>20</x>
         <y>120</y>
     </marker>

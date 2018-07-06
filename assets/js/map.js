@@ -89,7 +89,7 @@ $(document).on('ready',function(){
             // Extract relevant data from XML
             var xml_node = $('markers marker',data);
             xml_node.each(function(node){
-                markers[node] = new Marker(parseInt($('markers marker x',data).eq(node).text()),parseInt($('markers marker y',data).eq(node).text()));
+                markers[node] = new Marker(parseInt($('markers marker x',data).eq(node).text()),parseInt($('markers marker y',data).eq(node).text()),$('markers marker group',data).eq(node).text());
 			});
         },
         error: function(data,a,b){
@@ -106,7 +106,12 @@ $(document).on('ready',function(){
             	var name = $('groups group name',data).eq(node).text();
             	var description = $('groups group description',data).eq(node).text();
             	var color = $('groups group color',data).eq(node).text();
-            	$('#groups .content').append('<div class="group"><span class="name" style="background-color: '+color+';">'+name+'</span> <span class="description">'+description+'</span></div>')
+            	$('#groups .content').append('<div class="group"><label class="name" style="background-color: '+color+';"><input type="checkbox" name="'+name+'" checked>'+name+'</label> <span class="description">'+description+'</span></div>');
+            	groups[node] = [];
+            	groups[node]['name'] = name;
+            	groups[node]['description'] = description;
+            	groups[node]['description'] = color;
+            	groups[node]['view'] = true;
                 //markers[node] = new Marker(parseInt($('markers marker x',data).eq(node).text()),parseInt($('markers marker y',data).eq(node).text()));
 			});
         },
@@ -118,6 +123,10 @@ $(document).on('ready',function(){
     $('#groups .toggle').on('click',function(){
     	$(this).parent().toggleClass('active').find('.content').stop(true).toggle();
 	})
+
+	$('.group input').on('click',function(){
+
+	});
 
 	$('.zoom .minus').on('click',function(){
 		mapScale *= 0.9;
