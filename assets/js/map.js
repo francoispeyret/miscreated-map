@@ -34,7 +34,7 @@ function draw() {
 		);
     }
     for(mark=0; mark < markers.length; mark++) {
-    	if(groups[markers[mark].group].view==true)
+    	if(groups[markers[mark].group]['view']==true)
     	markers[mark].display();
 	}
     pop();
