@@ -1,8 +1,8 @@
-Marker = function(x,y,type) {
+Marker = function(x,y,group) {
     this.x = x;
     this.y = y;
     this.w = 25;
-    this.type = type;
+    this.group = group;
 
     this.display = function() {
         fill(255,0,0);

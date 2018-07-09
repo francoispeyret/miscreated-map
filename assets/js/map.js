@@ -34,6 +34,7 @@ function draw() {
 		);
     }
     for(mark=0; mark < markers.length; mark++) {
+    	if(groups[markers[mark].group].view==true)
     	markers[mark].display();
 	}
     pop();
@@ -107,11 +108,11 @@ $(document).on('ready',function(){
             	var description = $('groups group description',data).eq(node).text();
             	var color = $('groups group color',data).eq(node).text();
             	$('#groups .content').append('<div class="group"><label class="name" style="background-color: '+color+';"><input type="checkbox" name="'+name+'" checked>'+name+'</label> <span class="description">'+description+'</span></div>');
-            	groups[node] = [];
-            	groups[node]['name'] = name;
-            	groups[node]['description'] = description;
-            	groups[node]['description'] = color;
-            	groups[node]['view'] = true;
+            	groups[name] = [];
+            	groups[name]['name'] = name;
+            	groups[name]['description'] = description;
+            	groups[name]['description'] = color;
+            	groups[name]['view'] = true;
                 //markers[node] = new Marker(parseInt($('markers marker x',data).eq(node).text()),parseInt($('markers marker y',data).eq(node).text()));
 			});
         },
@@ -122,10 +123,15 @@ $(document).on('ready',function(){
 
     $('#groups .toggle').on('click',function(){
     	$(this).parent().toggleClass('active').find('.content').stop(true).toggle();
-	})
+	});
 
-	$('.group input').on('click',function(){
-
+	$(document).on('click','.group input',function(){
+		var groupCible = $(this).attr('name');
+		if(groups[groupCible]['view']) {
+			groups[groupCible]['view'] = false;
+		} else {
+			groups[groupCible]['view'] = true;
+		}
 	});
 
 	$('.zoom .minus').on('click',function(){
