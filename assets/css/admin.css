@@ -1720,7 +1720,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.42857;
-  color: #333333;
+  color: #535d66;
   background-color: #fff;
 }
 
@@ -4293,7 +4293,7 @@ select[multiple].input-lg,
   display: block;
   margin-top: 5px;
   margin-bottom: 10px;
-  color: #737373;
+  color: #929da6;
 }
 
 @media (min-width: 768px) {
@@ -6647,7 +6647,7 @@ a.badge:hover, a.badge:focus {
 /* line 27, ../scss/bootstrap/_thumbnails.scss */
 .thumbnail .caption {
   padding: 9px;
-  color: #333333;
+  color: #535d66;
 }
 
 /* line 34, ../scss/bootstrap/_thumbnails.scss */
@@ -8788,8 +8788,26 @@ button.close {
     display: none !important;
   }
 }
-/* line 8, ../scss/admin.scss */
+/* line 9, ../scss/admin.scss */
 .form-control,
 .btn {
   font-weight: 300;
+}
+
+/* line 15, ../scss/admin.scss */
+#header {
+  padding: 5px 0;
+}
+
+/* line 19, ../scss/admin.scss */
+.big-icon {
+  font-size: 72px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+/* line 25, ../scss/admin.scss */
+.card {
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }

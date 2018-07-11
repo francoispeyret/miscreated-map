@@ -2,10 +2,27 @@
 
 $font-size-base: 16px;
 $brand-primary: #535d66;
+$text-color: $brand-primary;
 
 @import "bootstrap";
 
 .form-control,
 .btn {
 	font-weight: 300;
+}
+
+
+#header {
+	padding: 5px 0;
+}
+
+.big-icon {
+	font-size: 72px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+.card {
+	text-align: center;
+	box-shadow: 0 10px 20px rgba(#000,0.1);
 }

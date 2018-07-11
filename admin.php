@@ -8,7 +8,13 @@
 	</head>
 	<body>
 		<?php
-			include('admin/pages/connexion.php');
+			session_start();
+			if(isset($_SESSION['email']) && $_SESSION['email']!='') {
+				include('admin/includes/header.php');
+				include('admin/pages/dashboard.php');
+			} else {
+				include('admin/pages/connexion.php');
+			}
 		?>
 		<script type="text/javascript" src="assets/js/jquery.js"></script>
 		<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
