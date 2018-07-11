@@ -1,0 +1,11 @@
+@import "compass";
+
+$font-size-base: 16px;
+$brand-primary: #535d66;
+
+@import "bootstrap";
+
+.form-control,
+.btn {
+	font-weight: 300;
+}
