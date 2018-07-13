@@ -12,8 +12,6 @@ if($_POST['login_name']) {
 	$req->execute(array('email' => $email));
 	$connexion = $req->fetch();
 
-	var_dump($connexion['pass']);
-	var_dump($password);
 	if($password == $connexion['pass'] && $password!='') {
 		$isPasswordCorrect = true;
 	} else {
@@ -23,7 +21,7 @@ if($_POST['login_name']) {
 	$error = false;
 
 	if (!$connexion) {
-		$error = 'Wrong email or password ! a';
+		$error = 'Wrong email or password !';
 	}
 	else {
 		if ($isPasswordCorrect) {
@@ -32,7 +30,8 @@ if($_POST['login_name']) {
 			header('Location: admin.php');
 		}
 		else {
-			$error = 'Wrong email or password ! b';
+			$error = 'Wrong email or password !';
 		}
 	}
+	$req->closeCursor();
 }

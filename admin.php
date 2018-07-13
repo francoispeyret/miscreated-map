@@ -11,7 +11,19 @@
 			session_start();
 			if(isset($_SESSION['email']) && $_SESSION['email']!='') {
 				include('admin/includes/header.php');
-				include('admin/pages/dashboard.php');
+				switch ($_GET['page']) {
+					case 'contributors':
+						include('admin/pages/contributors.php');
+						break;
+					case 'groups':
+						include('admin/pages/groups.php');
+						break;
+					case 'markers':
+						include('admin/pages/markers.php');
+						break;
+					default:
+						include('admin/pages/dashboard.php');
+				}
 			} else {
 				include('admin/pages/connexion.php');
 			}

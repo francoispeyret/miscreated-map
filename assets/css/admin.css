@@ -8794,19 +8794,19 @@ button.close {
   font-weight: 300;
 }
 
-/* line 15, ../scss/admin.scss */
+/* line 16, ../scss/admin.scss */
 #header {
   padding: 5px 0;
 }
 
-/* line 19, ../scss/admin.scss */
+/* line 20, ../scss/admin.scss */
 .big-icon {
   font-size: 72px;
   margin-top: 20px;
   margin-bottom: 30px;
 }
 
-/* line 25, ../scss/admin.scss */
+/* line 26, ../scss/admin.scss */
 .card {
   text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
