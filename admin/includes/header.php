@@ -6,21 +6,26 @@
 					echo 'class="active"';
 				}
 			?>>
-				<a href="admin.php">Home</a>
+				<a href="admin.php">
+                    <i class="glyphicon glyphicon-home"></i> Home
+                </a>
 			</li>
 			<li <?php
 				if (isset($_GET['page']) && $_GET['page']=='markers') {
 					echo 'class="active"';
 				}
 			?>>
-				<a href="?page=markers">Markers</a>
+				<a href="?page=markers">
+                    <i class="glyphicon glyphicon-map-marker"></i> Markers
+                </a>
 			</li>
 			<li <?php
 			if (isset($_GET['page']) && $_GET['page']=='groups') {
 				echo 'class="active"';
 			}
 			?>>
-				<a href="?page=groups">Groups</a>
+				<a href="?page=groups">
+                    <i class="glyphicon glyphicon-th-large"></i> Groups</a>
 			</li>
 			<li <?php
 			if (isset($_GET['page']) && $_GET['page']=='contributors') {
@@ -29,7 +34,9 @@
 				echo 'class="pull-right"';
 			}
 			?>>
-				<a href="?page=contributors">Contributors</a>
+				<a href="?page=contributors">
+                    <i class="glyphicon glyphicon-user"></i> Contributors
+                </a>
 			</li>
 		</ul>
 	</div>

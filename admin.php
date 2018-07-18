@@ -1,4 +1,6 @@
-<!doctype html>
+<?php
+session_start();
+?><!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -8,7 +10,6 @@
 	</head>
 	<body>
 		<?php
-			session_start();
 			if(isset($_SESSION['email']) && $_SESSION['email']!='') {
 				include('admin/includes/header.php');
 				switch ($_GET['page']) {
@@ -19,7 +20,16 @@
 						include('admin/pages/groups.php');
 						break;
 					case 'markers':
-						include('admin/pages/markers.php');
+					    if(isset($_GET['action'])) {
+                            if($_GET['action']=='edit') {
+                                include('admin/pages/markers-edit.php');
+                            }
+                            if($_GET['action']=='save') {
+                                include('admin/pages/markers-save.php');
+                            }
+                        } else {
+                            include('admin/pages/markers.php');
+                        }
 						break;
 					default:
 						include('admin/pages/dashboard.php');

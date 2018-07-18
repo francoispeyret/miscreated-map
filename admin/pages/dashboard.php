@@ -27,15 +27,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-3">
-			<div class="card panel panel-default">
-				<div class="panel-body">
-					<div class="glyphicon glyphicon-cloud big-icon"></div>
-					<p class="nb"><?php echo count(scandir(ini_get("session.save_path"))); ?> Contributor(s) online</p>
-					<p class="nb"><?php echo count(scandir(ini_get("session.save_path"))); ?> User(s) online</p>
-				</div>
-			</div>
-		</div>
 
 	</div>
 </div>
