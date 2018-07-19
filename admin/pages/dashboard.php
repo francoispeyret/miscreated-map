@@ -12,7 +12,7 @@
 		<div class="col-xs-12 col-sm-3">
 			<div class="card panel panel-default">
 				<div class="panel-body">
-					<div class="glyphicon glyphicon-th-large big-icon"></div>
+					<div class="glyphicon glyphicon-th big-icon"></div>
 					<p class="nb">15 Marker Groups</p>
 					<p><a href="?page=groups" class="btn btn-default">See Marker Groups</a></p>
 				</div>

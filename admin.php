@@ -12,12 +12,26 @@ session_start();
 		<?php
 			if(isset($_SESSION['email']) && $_SESSION['email']!='') {
 				include('admin/includes/header.php');
-				switch ($_GET['page']) {
+				if(isset($_GET['page']) && $_GET['page']) {
+					$page = stripslashes($_GET['page']);
+				} else {
+					$page = '';
+				}
+				switch ($page) {
 					case 'contributors':
 						include('admin/pages/contributors.php');
 						break;
 					case 'groups':
-						include('admin/pages/groups.php');
+						if(isset($_GET['action'])) {
+							if($_GET['action']=='edit') {
+								include('admin/pages/groups-edit.php');
+							}
+							if($_GET['action']=='save') {
+								include('admin/pages/groups-save.php');
+							}
+						} else {
+							include('admin/pages/groups.php');
+						}
 						break;
 					case 'markers':
 					    if(isset($_GET['action'])) {

@@ -2,6 +2,10 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+
+			<h3 class="page-subheading"><i class="glyphicon glyphicon-th"></i> Groups
+				<a href="?page=groups&action=edit&id=new" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus-sign"></i> Add Group</a>
+			</h3>
             <?php
 
             include('admin/core/bdd.php');

@@ -23,7 +23,7 @@ include('admin/core/account.php');
 					<form action="admin.php" method="post">
 						<div class="form-group">
 							<label for="login_name">Email address</label>
-							<input placeholder="Email" type="text" class="form-control" name="login_name" value="<?php echo $_POST['login_name'] ?>">
+							<input placeholder="Email" type="text" class="form-control" name="login_name" value="<?php if(isset($_POST['login_name'])) echo $_POST['login_name']; ?>">
 						</div>
 						<div class="form-group">
 							<label for="login_pass">Password</label>

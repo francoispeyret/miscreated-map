@@ -3,25 +3,28 @@
     <div class="row">
         <div class="col-xs-12">
 
-            <h3 class="page-subheading"><i class="glyphicon glyphicon-map-marker"></i> Markers</h3>
+            <h3 class="page-subheading"><i class="glyphicon glyphicon-map-marker"></i> Markers
+				<a href="?page=markers&action=edit&id=new" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus-sign"></i> Add Marker</a>
+			</h3>
             <?php
 
             include('admin/core/bdd.php');
+
+			$pages = $bdd->query('SELECT COUNT(*) FROM `markers`');
+			$nbElement = (int)$pages->fetch()['COUNT(*)'];
+			$pages->closeCursor();
+
+			$nbElementPerPage = 5;
 
             if(isset($_GET['nb'])) {
                 $currentPage = $_GET['nb'];
             } else {
                 $currentPage = 1;
             }
-            $pages = $bdd->query('SELECT COUNT(*) FROM `markers`');
-
-            $nbElement = (int)$pages->fetch()['COUNT(*)'];
-            $pages->closeCursor();
-            $nbElementPerPage = 5;
 
             $req = $bdd->query('SELECT * FROM `markers` LIMIT '.(($currentPage-1)*$nbElementPerPage).','.$nbElementPerPage);
+
             ?>
-            <a href="?page=markers&action=edit&id=new" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Add marker</a>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -41,15 +44,20 @@
                     echo '<td><small>'. $donnees['id'] . '</small></td>';
                     echo '<td>'. $donnees['name'] .'</td>';
 
-                    $group = $bdd->query('SELECT * FROM `groups` WHERE id='.$donnees['id_group']);
+                    if(isset($donnees['id_group']) && $donnees['id_group']) {
+						$group = $bdd->query('SELECT * FROM `groups` WHERE id='.$donnees['id_group']);
+						if($groupData = $group->fetch()) {
+							do {
+								echo '<td><span class="label" style="background: '.$groupData['color'].';">'. $groupData['name'] . '</span></td>';
+							} while ($groupData = $group->fetch());
+						} else {
+							echo '<td> --- </td>';
+						}
+						$group->closeCursor();
+					} else {
+						echo '<td> --- </td>';
+					}
 
-                    if($groupData = $group->fetch()) {
-                        do {
-                            echo '<td><span class="label" style="background: '.$groupData['color'].';">'. $groupData['name'] . '</span></td>';
-                        } while ($groupData = $group->fetch());
-                    } else {
-                        echo '<td> --- </td>';
-                    }
                     echo '<td>'. $donnees['x'] . '</td>';
                     echo '<td>'. $donnees['y'] . '</td>';
                     echo '<td>';
@@ -59,7 +67,6 @@
                     echo '</tr>';
                 }
 
-                $group->closeCursor();
                 ?>
                 </tbody>
             </table>

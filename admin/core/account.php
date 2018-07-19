@@ -2,10 +2,9 @@
 
 include('bdd.php');
 
-$email = $_POST['login_name'];
-$password = $_POST['login_pass'];
-
-if($_POST['login_name']) {
+if(isset($_POST['login_name'])) {
+	$email = $_POST['login_name'];
+	$password = $_POST['login_pass'];
 
 	//  Récupération de l'utilisateur et de son pass hashé
 	$req = $bdd->prepare('SELECT id, pass FROM accounts WHERE email = :email');
