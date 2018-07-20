@@ -74,7 +74,7 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li<?php if($currentPage<2) echo' class="disabled"'; ?>>
-                        <a href="?page=markers&nb=<?php if($currentPage>2)echo $currentPage-1;else echo '1'; ?>" aria-label="Previous">
+                        <a <?php if($currentPage<2) {} else {?> href="?page=markers&nb=<?php if($currentPage>2)echo $currentPage-1;else echo '1'; ?>" <?php } ?> aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
@@ -91,7 +91,7 @@
                         }
                     ?>
                     <li<?php if($currentPage>=ceil($nbElement / $nbElementPerPage)) echo' class="disabled"'; ?>>
-                        <a href="?page=markers&nb=<?php if($currentPage<ceil($nbElement / $nbElementPerPage)) echo $currentPage+1; else echo ceil($nbElement / $nbElementPerPage); ?>" aria-label="Next">
+                        <a <?php if($currentPage>=ceil($nbElement / $nbElementPerPage)) {} else { ?> href="?page=markers&nb=<?php if($currentPage<ceil($nbElement / $nbElementPerPage)) echo $currentPage+1; else echo ceil($nbElement / $nbElementPerPage); ?>" <?php } ?> aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

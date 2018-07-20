@@ -1,20 +1,30 @@
 
 var mapScale = 1;
+var dragScale = 1;
 var mapper = [];
 var client = {};
-var gps = true;
+var gps = false;
 var markers = [];
 var groups = [];
 
 var isDragging = false;
 
 function setup() {
-   	createCanvas(window.innerWidth, window.innerHeight);
+    if(document.getElementById('map-holder')) {
+    	var size = document.getElementById('map-holder').offsetWidth;
+        var canvas = createCanvas(size, size);
+        canvas.parent('map-holder');
+        client.pos = createVector(document.getElementById('x').value,document.getElementById('y').value);
+        $(document).trigger('map-init');
+        gps = true;
+	} else {
+        var canvas = createCanvas(window.innerWidth, window.innerHeight);
+        client.pos = createVector(0,0);
+	}
    	for(tiles=0; tiles < 16; tiles++) {
    		mapper[tiles] = loadImage("assets/textures/map-texture_"+tiles+".jpg");
 	}
 
-    client.pos = createVector(0,0);
 }
 
 function draw() {
@@ -27,8 +37,8 @@ function draw() {
     	if(tiles%4==0)
     		y++;
         image(mapper[tiles],
-				client.pos.x + (512 * (tiles%4)),
-				client.pos.y+ (512 * y),
+				(client.pos.x + (512 * (tiles%4))) ,
+				(client.pos.y + (512 * y)),
 				mapper[tiles].width/2,
 				mapper[tiles].height/2
 		);
@@ -52,28 +62,34 @@ function draw() {
 }
 
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+    if(!document.getElementById('map-holder')) {
+        resizeCanvas(windowWidth, windowHeight);
+    }
 }
 
 function mouseWheel(event) {
     if(event.delta < 0 && mapScale < 3) {
         mapScale *= 1.05;
+        dragScale *= 0.95;
 	}
     else if(mapScale > 0.1) {
         mapScale *= 0.95;
+        dragScale *= 1.05;
 	}
 }
 
 function mousePressed() {
-	var m = createVector(mouseX, mouseY);
+    let m = createVector(Math.trunc(mouseX*dragScale), Math.trunc(mouseY*dragScale));
 	clickOffset = p5.Vector.sub(client.pos, m);
+    $(document).trigger('map-move');
 	isDragging = true;
 }
 
-function mouseDragged(e) {
+function mouseDragged() {
 	if(isDragging) {
-		let m = createVector(mouseX, mouseY);
+		let m = createVector(Math.trunc(mouseX*dragScale), Math.trunc(mouseY*dragScale));
 		client.pos.set(m).add(clickOffset);
+        $(document).trigger('map-move');
 	}
 }
 

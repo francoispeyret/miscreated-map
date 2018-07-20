@@ -8811,3 +8811,8 @@ button.close {
   text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
+
+/* line 31, ../scss/admin.scss */
+.label {
+  text-shadow: 1px 1px 0 #333;
+}
