@@ -20,7 +20,7 @@
 				</thead>
 				<tbody>
 					<?php
-						while ($donnees = $req->fetch())
+						while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
 						{
 							echo '<tr>';
 								echo '<td><small>'. $donnees['id'] . '</small></td>';

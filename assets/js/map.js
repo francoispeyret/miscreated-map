@@ -100,6 +100,41 @@ function mouseReleased() {
 $(document).on('ready',function(){
 
     $.ajax({
+        dataType: "json",
+        url: './ajax.php?type=groups',
+        data: '',
+        success: function(data) {
+            $.each( data, function( key, val ) {
+            	//console.log(val);
+                groups[val.name] = [];
+                groups[val.name]['name'] = val.name;
+                groups[val.name]['description'] = val.description;
+                groups[val.name]['color'] = val.color;
+                groups[val.name]['view'] = true;
+                $('#groups .content').append('<div class="group"><label class="name" style="background-color: '+val.color+';"><input type="checkbox" name="'+val.name+'" checked>'+val.name+'</label> <span class="description">'+val.description+'</span></div>');
+
+            });
+            //markers[key] = new Marker(val.x, val.y, val.id_group);
+            $.ajax({
+                dataType: "json",
+                url: './ajax.php',
+                data: '',
+                success: function(data) {
+                    $.each( data, function( key, val ) {
+                        markers[key] = new Marker(parseInt(val.x * -1), parseInt(val.y * -1), val.id_group);
+                    });
+                },
+                error: function(data) {
+                    alert('Error : loading markers failed');
+                }
+            });
+		},
+		error: function(data) {
+        	alert('Error : loading groups failed');
+		}
+    });
+
+    /*$.ajax({
         url: './data/markers.xml',
         dataType: 'xml',
         success: function(data){
@@ -107,7 +142,7 @@ $(document).on('ready',function(){
             var xml_node = $('markers marker',data);
             xml_node.each(function(node){
                 markers[node] = new Marker(parseInt($('markers marker x',data).eq(node).text()),parseInt($('markers marker y',data).eq(node).text()),$('markers marker group',data).eq(node).text());
-			});
+            });
         },
         error: function(data,a,b){
             alert('Error : loading markers.xml failed');
@@ -135,7 +170,7 @@ $(document).on('ready',function(){
         error: function(data,a,b){
             alert('Error : loading groups.xml failed');
         }
-    });
+    });*/
 
     $('#groups .toggle').on('click',function(){
     	$(this).parent().toggleClass('active').find('.content').stop(true).toggle();

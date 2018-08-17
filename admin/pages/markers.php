@@ -11,7 +11,7 @@
             include('admin/core/bdd.php');
 
 			$pages = $bdd->query('SELECT COUNT(*) FROM `markers`');
-			$nbElement = (int)$pages->fetch()['COUNT(*)'];
+			$nbElement = (int)$pages->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
 			$pages->closeCursor();
 
 			$nbElementPerPage = 5;
@@ -38,7 +38,7 @@
                 </thead>
                 <tbody>
                 <?php
-                while ($donnees = $req->fetch())
+                while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
                 {
                     echo '<tr>';
                     echo '<td><small>'. $donnees['id'] . '</small></td>';
@@ -46,7 +46,7 @@
 
                     if(isset($donnees['id_group']) && $donnees['id_group']) {
 						$group = $bdd->query('SELECT * FROM `groups` WHERE id='.$donnees['id_group']);
-						if($groupData = $group->fetch()) {
+						if($groupData = $group->fetch(PDO::FETCH_ASSOC)) {
 							do {
 								echo '<td><span class="label" style="background: '.$groupData['color'].';">'. $groupData['name'] . '</span></td>';
 							} while ($groupData = $group->fetch());

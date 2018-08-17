@@ -3,14 +3,16 @@ Marker = function(x,y,group) {
     this.y = y;
     this.w = 25;
     this.group = group;
+    this.color = groups[this.group].color;
 
     this.display = function() {
-        fill(255,0,0);
-        noStroke();
-        ellipse(client.pos.x + this.x - 12.5, client.pos.y + this.y - 12.5,this.w);
-    }
+        console.log();
+        fill(color(this.color));
+        stroke(0,0,0,120);
+        ellipse(client.pos.x + this.x, client.pos.y + this.y,this.w);
+    },
 
     this.update = function () {
 
     }
-}
+};

@@ -38,6 +38,17 @@
                     <i class="glyphicon glyphicon-user"></i> Contributors
                 </a>
 			</li>
+			<li <?php
+			if (isset($_GET['page']) && $_GET['page']=='map') {
+				echo 'class="active pull-right"';
+			} else {
+				echo 'class="pull-right"';
+			}
+			?>>
+				<a href="?page=map">
+                    <i class="glyphicon glyphicon-eye-open"></i> View map
+                </a>
+			</li>
 		</ul>
 	</div>
 </nav>

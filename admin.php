@@ -45,6 +45,9 @@ session_start();
                             include('admin/pages/markers.php');
                         }
 						break;
+                    case 'map':
+                        include('admin/pages/map.php');
+                        break;
 					default:
 						include('admin/pages/dashboard.php');
 				}

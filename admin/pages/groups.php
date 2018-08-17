@@ -19,17 +19,22 @@
                     <th>Name</th>
                     <th>Color</th>
                     <th>Description</th>
+                    <th>Tools</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-                while ($donnees = $req->fetch())
+                while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
                 {
                     echo '<tr>';
                     echo '<td><small>'. $donnees['id'] . '</small></td>';
                     echo '<td>'. $donnees['name'] . '</td>';
                     echo '<td><span class="label" style="background: '.$donnees['color'].';">'. $donnees['color'] . '</span></td>';
                     echo '<td>'. $donnees['description'] . '</td>';
+                    echo '<td>';
+                        echo'<a href="?page=groups&action=edit&id='.$donnees['id'].'" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a> ';
+                        echo'<a href="" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-trash"></i></a> ';
+                    echo'</td>';
                     echo '</tr>';
                 }
                 ?>

@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row">
 
-                <h2 class="page-heading">Marker Edit</h2>
+                <h2 class="page-heading">Group Edit</h2>
                 <form action="?page=groups&action=save" method="post">
                     <input type="hidden" name="id" value="<?php if($group) echo $group['id']; ?>">
                     <div class="form-group input-group">
@@ -28,7 +28,7 @@
                         <div class="col-sm-6">
                             <div class="form-group input-group">
                                 <div class="input-group-addon">Color</div>
-                                <input type="color" required class="form-control" name="color" id="color" placeholder="0" value="<?php if($group) echo $group['x']; ?>">
+                                <input type="color" required class="form-control" name="color" id="color" placeholder="0" value="<?php if($group) echo $group['color']; ?>">
                             </div>
                         </div>
                     </div>
