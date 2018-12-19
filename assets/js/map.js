@@ -39,8 +39,8 @@ function draw() {
         image(mapper[tiles],
 				(client.pos.x + (512 * (tiles%4))) ,
 				(client.pos.y + (512 * y)),
-				mapper[tiles].width/2,
-				mapper[tiles].height/2
+				512,
+				512
 		);
     }
     for(mark=0; mark < markers.length; mark++) {
